@@ -1,0 +1,32 @@
+
+
+.bC {
+    position: absolute;
+    background-color: bisque;
+    touch-action: none;
+    z-index: 1;
+}
+
+.can {
+    border: solid;
+    /*background-color: aquamarine;*/
+    touch-action: none;
+    position:relative;
+    z-index: 2;
+}
+
+
+.bar {
+    position: relative;
+    width: 100px;
+    height: 10px;
+    z-index: 2;
+}
+
+.hbar{
+    background-color: red;
+}
+
+.mbar {
+    background-color: blue;
+}
