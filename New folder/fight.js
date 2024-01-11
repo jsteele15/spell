@@ -40,6 +40,9 @@ let curLevel = 0;
 //the curent ind in any given level
 let curInd = 0;
 
+//relmove
+let relMove = [];
+
 //spritesheets
 let monImage = new Image();
 monImage.src = "images/mon-export2.png";
@@ -80,6 +83,33 @@ window.addEventListener('load', function(){
     }
 })
 
+///////////////////////////////////////////////////////
+/*to add touch event listeners to the canvas         */
+///////////////////////////////////////////////////////
+let drawPath = new Path2D();
+ctx.lineWidth = 50;
+ctx.strokeStyle = "#000000";
+
+fireCanv.addEventListener("touchstart", (e)=>{
+    const touch = e.touches[0];
+    relMove.push([[touch.clientX, touch.clientY],[]])
+});
+
+fireCanv.addEventListener("touchmove", (e)=>{
+    const touch = e.touches[0];
+    relMove[0][1] = [touch.clientX, touch.clientY];
+    console.log("we touched");
+    
+});
+
+fireCanv.addEventListener("touchmove", (e) =>{
+    const touch = e.touches[0];
+    drawPath.lineTo(touch.clientX, touch.clientY);
+    
+    //spellLoc[curInd][1] = [touch.clientX, touch.clientY];
+    //console.log(spellLoc[curInd][1]);
+    ctx.stroke(drawPath);
+});
 
 //function for the ui
 //need to check if clicked in
@@ -240,18 +270,18 @@ function Monster(image, name, attack, imageCut, health, score, frame, maxFrames)
             //console.log("dodged") 
 };
 //attack includes the switch statment for what attack they do, the second is the number that controls the spritesheet, the third the speed of the attack
-let wormyBoy = new Monster(monImage, 'wormy boy', ["fire", 1, 10], [460, 500], 10, 10000, 1, 6);
-let wormyBoy1 = new Monster(monImage, 'wormy boy1', ["fire", 1, 10], [460, 500], 10, 10000, 1, 6);
-let wormyBoy2 = new Monster(monImage, 'wormy boy2', ["fire", 1, 10], [460, 500], 10, 10000, 1, 6);
-let wormyBoy3 = new Monster(monImage, 'wormy boy3', ["fire", 1, 10], [460, 500], 10, 10000, 1, 6);
-let badDrawnFella = new Monster(monImage, 'sad man', ["fire", 1, 10], [0, 500], 10, 20000,1 , 2);
+let wormyBoy = new Monster(monImage, 'wormy boy', ["fire", 1, 20], [460, 500], 10, 10000, 1, 6);
+let wormyBoy1 = new Monster(monImage, 'wormy boy1', ["fire", 1, 20], [460, 500], 10, 10000, 1, 6);
+let wormyBoy2 = new Monster(monImage, 'wormy boy2', ["fire", 1, 20], [460, 500], 10, 10000, 1, 6);
+let wormyBoy3 = new Monster(monImage, 'wormy boy3', ["fire", 1, 20], [460, 500], 10, 10000, 1, 6);
+let badDrawnFella = new Monster(monImage, 'sad man', ["fire", 1, 20], [0, 500], 10, 20000,1 , 2);
 //test out some more enemies
-let badDrawnFella1 = new Monster(monImage, 'sad man', ["fire", 1, 10], [0, 500], 10, 20000,1 , 2);
-let badDrawnFella2 = new Monster(monImage, 'sad man', ["fire", 1, 10], [0, 500], 10, 20000,1 , 2);
-let badDrawnFella3 = new Monster(monImage, 'sad man', ["fire", 1, 10], [0, 500], 10, 20000,1 , 2);
-let legLad = new Monster(monImage, 'leg guy', ["spawn", 1, 10], [960, 500], 100, 10000, 1, 1);
-let legLad2 = new Monster(monImage, 'leg guy', ["spawn", 1, 10], [960, 500], 100, 10000, 1, 1);
-let legLad3 = new Monster(monImage, 'leg guy', ["spawn", 1, 10], [960, 500], 100, 10000, 1, 1);
+let badDrawnFella1 = new Monster(monImage, 'sad man', ["fire", 1, 20], [0, 500], 10, 20000,1 , 2);
+let badDrawnFella2 = new Monster(monImage, 'sad man', ["fire", 1, 20], [0, 500], 10, 20000,1 , 2);
+let badDrawnFella3 = new Monster(monImage, 'sad man', ["fire", 1, 20], [0, 500], 10, 20000,1 , 2);
+let legLad = new Monster(monImage, 'leg guy', ["spawn", 1, 20], [960, 500], 100, 10000, 1, 1);
+let legLad2 = new Monster(monImage, 'leg guy', ["spawn", 1, 20], [960, 500], 100, 10000, 1, 1);
+let legLad3 = new Monster(monImage, 'leg guy', ["spawn", 1, 20], [960, 500], 100, 10000, 1, 1);
 
 let monList = [wormyBoy, badDrawnFella, wormyBoy1, wormyBoy2, wormyBoy3];
 let monListlv2 = [legLad, legLad2, legLad3,badDrawnFella1, badDrawnFella2, badDrawnFella3];
@@ -269,7 +299,7 @@ function Char(img, imageCut, health, pos){
     this.pos = pos;
     
     this.draw = function(){
-        ctx.clearRect(pos[0], pos[1], 200, 200);
+        ctx.clearRect(pos[0], pos[1], 250, 250);
         ctx.drawImage(img, imageCut[0], imageCut[1], 60, 60, pos[0], pos[1], 220, 220);
     }
 };
@@ -338,8 +368,15 @@ document.addEventListener('keydown', function(event){
         moveVars[0][1] = 2000;
         loseHealth(listLevs[curLevel], 100);
         //battle(listLevs[curLevel]);
-        
-    };
+    } else if(event.key==="d"){
+        guy.pos[0]+= 20;
+        guy.draw();
+        //move the character right
+    } else if(event.key==="a"){
+        guy.pos[0]-= 20;
+        guy.draw();
+        //move the character left
+    }
 });
 
 //context.drawImage(img, sx, sy, swidth, sheight, x, y, width, height)

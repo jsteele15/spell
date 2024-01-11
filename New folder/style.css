@@ -48,14 +48,6 @@ body {
     z-index: 1;
 }
 
-.can {
-    border: solid;
-    /*background-color: aquamarine;*/
-    touch-action: none;
-    position:relative;
-    z-index: 2;
-}
-
 
 .bar {
     position: relative;
