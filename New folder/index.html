@@ -9,14 +9,15 @@
     </head>
     <body>
         
-        <!----><canvas id="backCanvas" class="bC" width="420" height="640"></canvas>
-        <canvas id="myCanvas" class="can" width="420" height="500"></canvas>
-        <br>
-        <div class="bar mbar" id="manB"></div>
-        <div class="bar hbar" id="helB"></div>
-        <canvas id="actionBox" class="can" width="420" height="100"></canvas>
-        <!--<h1 id="what">test</h1>
-        <button id="check">check me</button>-->
-        <script src="spell.js"></script>
+    <div id="scoreCounter" class="grid-container">
+        <div class="grid-item" id="s">Score:</div>
+        <div class="grid-item center" id="s=lv">Lvl 1</div>
+        <div class="grid-item right" id="monS">cur mon</div>
+    </div>
+
+        <canvas id="myCanvas" class="can" width="1080" height="2400"></canvas>
+        <canvas height="500" width="500" id="atCanvas" class="atCan"></canvas>
+        
+        <script src="fight.js"></script>
     </body>
 </html>

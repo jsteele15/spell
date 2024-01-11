@@ -1,4 +1,45 @@
+body {
+    margin:0;
+    padding:0;
+}
 
+.can{
+    position:fixed;
+    background-color: rgb(17, 17, 17);
+}
+
+.atCan{
+    position: fixed;
+    top: 35%;
+}
+
+.menuButtons{
+    position: fixed;
+    font-size:100px;
+    top:50%;
+    width:50%;
+    height:30%;
+}
+
+.grid-container{
+    position: relative;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+}
+
+.grid-item{
+    padding: 20px;
+    font-size: 50px;
+}
+
+.center{
+    text-align: center;
+}
+
+.right{
+    text-align: right;
+}
 
 .bC {
     position: absolute;
